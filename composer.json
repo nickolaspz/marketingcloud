@@ -2,6 +2,7 @@
     "name": "nickolaspz/marketingcloud",
     "description": "Marketing Cloud Mailer",
     "type": "library",
+    "license": "MIT",
     "authors": [
         {
             "name": "Nick brown",
