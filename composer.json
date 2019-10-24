@@ -1,6 +1,6 @@
 {
     "name": "nickolaspz/marketingcloud",
-    "description": "Marketing Cloud Mailer",
+    "description": "Marketing Cloud Wrapper",
     "type": "library",
     "license": "MIT",
     "authors": [
@@ -13,11 +13,11 @@
         "salesforce-mc/fuel-sdk-php": "^1.4"
     },
     "require-dev": {
-        "phpunit/phpunit": "~5.7.10|~6.5|~7.0|~8.0"
+        "phpunit/phpunit": "~7.0"
     },
     "autoload": {
         "psr-4": {
-            "Nickolaspz\\MarketingCloud\\Mailer\\": "src"
+            "Nickolaspz\\MarketingCloud\\": "src"
         }
     },
     "autoload-dev": {

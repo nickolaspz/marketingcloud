@@ -1,23 +1,11 @@
 <?php
-namespace Nickolaspz\MarketingCloud\Mailer;
+namespace Nickolaspz\MarketingCloud;
 
-use FuelSdk\ET_Client;
-use FuelSdk\ET_List;
 use FuelSdk\ET_TriggeredSend;
+use Nickolaspz\MarketingCloud\Client;
 
-class MCMailer
+class Trigger extends Client
 {
-    private $client;
-
-    public function __construct($config = [])
-    {
-        $this->client = new ET_Client(
-            true,
-            true, 
-            array_merge($this->loadConfig(), $config)
-        );
-    }
-
     /**
      * trigger
      *
@@ -27,7 +15,7 @@ class MCMailer
      *
      * @return void
      */
-    public function trigger(string $name, $subscribers, array $data = [])
+    public function send(string $name, $subscribers, array $data = [])
     {
         try {
             $trigger = new ET_TriggeredSend();
@@ -37,6 +25,10 @@ class MCMailer
             $this->createEmailList($trigger, $subscribers, $data);
 
             $response = $trigger->send();
+            
+            if (isset($response->status) && $response->status === false) {
+                return false;
+            }
         } catch (Exception $e) {
             return false;
         }
@@ -72,25 +64,5 @@ class MCMailer
         }
 
         $trigger->subscribers = $emailList;
-    }
-
-    /**
-     * getClient
-     *
-     * @return void
-     */
-    public function getClient()
-    {
-        return $this->client;
-    }
-
-    /**
-     * loadConfig
-     *
-     * @return void
-     */
-    private function loadConfig()
-    {
-        return include __DIR__ . '\\..\\config\\config.php';
     }
 }

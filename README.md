@@ -1,9 +1,29 @@
 # marketingcloud
-SF Marketing Cloud Trigger wrapper for FuelSDK-PHP
+SF Marketing Cloud wrapper for FuelSDK-PHP
+
+## Config
+Create file nmc-config.php in app root folder with the following contents filled in
+
+```php
+return [
+    'appsignature' => 'none',
+    'clientid' => '',
+    'clientsecret' => '',
+    'defaultwsdl' => '',
+    'xmlloc' => __DIR__ . '\\..\\cache\\ExactTargetWSDL.xml',
+    'baseAuthUrl' => '',
+    'baseSoapUrl' => '',
+    'baseUrl' => '',
+    'useOAuth2Authentication' => true, 
+    'accountId' => '', 
+    'scope' => ''
+];
+```
 
 ## Example
 ```php
-use Nickolaspz\MarketingCloud\Mailer\MCMailer;
+use Nickolaspz\MarketingCloud\Trigger;
+use Nickolaspz\MarketingCloud\DataExtension;
 
 public function send_trigger(Request $request)
 {
@@ -16,24 +36,7 @@ public function send_trigger(Request $request)
 		]
 	];
         
-	$mailer = new MCMailer($this->getConfig());
-	$response = $mailer->trigger('Trigger_Name', $email, $data);
-}
-
-private function getConfig()
-{
-	// Input your values
-	return [
-      'appsignature' => 'none',
-      'clientid' => '',
-      'clientsecret' => '',
-      'defaultwsdl' => '',
-      'baseAuthUrl' => '',
-      'baseSoapUrl' => '',
-      'baseUrl' => '',
-      'useOAuth2Authentication' => true, 
-      'accountId' => '', 
-      'scope' => ''
-  ];
+	$trigger = new Trigger($this->getConfig());
+	$response = $trigger->send('Trigger_Name', $email, $data);
 }
 ```
