@@ -13,7 +13,7 @@ class Trigger extends Client
      * @param  mixed $subscribers
      * @param  array $data
      *
-     * @return void
+     * @return mixed $response
      */
     public function send(string $name, $subscribers, array $data = [])
     {
@@ -26,11 +26,9 @@ class Trigger extends Client
 
             $response = $trigger->send();
             
-            if (isset($response->status) && $response->status === false) {
-                return false;
-            }
+            return $response;
         } catch (Exception $e) {
-            return false;
+            return $e->getMessage();
         }
 
         return true;
