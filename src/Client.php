@@ -7,7 +7,7 @@ class Client
 {
     private $client;
 
-    const APP_ROOT_FOLDER = __DIR__ . '\\..\\..\\..\\..\\';
+    const APP_ROOT_FOLDER = __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR;
 
     public function __construct()
     {
@@ -63,6 +63,6 @@ class Client
      */
     private function loadTestConfig()
     {
-        return include __DIR__ . '\\..\\config.php';
+        return include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config.php';
     }
 }
