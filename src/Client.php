@@ -35,7 +35,7 @@ class Client
      */
     private function loadConfig()
     {
-        return include __DIR__ . '\\..\\config\\config.php';
+        return include __DIR__ . DIRECTORY_SEPARATOR . '..' . DIRECTORY_SEPARATOR . 'config' . DIRECTORY_SEPARATOR . 'config.php';
     }
 
     /**
